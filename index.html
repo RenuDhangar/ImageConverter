@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixelMorph — Next-Gen Image Converter (PNG, JPG, WEBP)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <header class="navbar">
+    <div class="container nav-content">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">Pixel<span class="gradient-text">Morph</span></span>
+      </div>
+      <div class="nav-badges">
+        <span class="badge"><span class="badge-dot"></span> 100% Client-Side Privacy</span>
+        <span class="badge highlight">PNG • JPG • WEBP</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <!-- Hero Header -->
+    <section class="hero-section">
+      <div class="pill-announcement">
+        <span class="pill-sparkle">✨</span> Lightning-Fast Local Image Transformation
+      </div>
+      <h1 class="hero-title">
+        Convert Images in <span class="gradient-text">Real-Time</span>
+      </h1>
+      <p class="hero-subtitle">
+        Seamlessly transform PNG, JPG, and WEBP formats directly inside your browser. 
+        Zero uploads, zero tracking, maximum quality and speed.
+      </p>
+    </section>
+
+    <!-- Upload Zone -->
+    <section class="upload-section">
+      <div class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" multiple accept="image/png, image/jpeg, image/webp" hidden>
+        <div class="drop-zone-content">
+          <div class="icon-orb">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+          </div>
+          <h2 class="drop-title">Drag & drop your images here</h2>
+          <p class="drop-subtitle">or <button type="button" class="browse-btn" id="browseTrigger">browse files</button> from your device</p>
+          <div class="format-tags">
+            <span class="format-tag">.PNG</span>
+            <span class="format-tag">.JPG / .JPEG</span>
+            <span class="format-tag">.WEBP</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Global Controls Toolbar (shown when files added) -->
+    <section class="batch-toolbar glass-panel" id="batchToolbar" style="display: none;">
+      <div class="toolbar-left">
+        <span class="queue-counter" id="queueCounter">0 images loaded</span>
+        <button class="text-btn danger" id="clearAllBtn">Clear All</button>
+      </div>
+
+      <div class="toolbar-right">
+        <div class="control-group">
+          <label for="globalFormat">Convert All To:</label>
+          <div class="select-wrapper">
+            <select id="globalFormat">
+              <option value="webp">WEBP (Modern & Fast)</option>
+              <option value="png">PNG (Lossless Transparency)</option>
+              <option value="jpeg">JPG (Standard Photo)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="control-group quality-group" id="globalQualityGroup">
+          <label for="globalQuality">Quality: <span id="globalQualityVal">90%</span></label>
+          <input type="range" id="globalQuality" min="10" max="100" value="90" class="custom-slider">
+        </div>
+
+        <button class="btn btn-primary" id="convertAllBtn">
+          <span>⚡ Convert All</span>
+        </button>
+        <button class="btn btn-secondary" id="downloadAllBtn" disabled>
+          <span>📦 Download All (ZIP)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- File Items Queue -->
+    <section class="queue-section" id="queueSection">
+      <div class="queue-list" id="queueList"></div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features-grid">
+      <div class="feature-card glass-panel">
+        <div class="feature-icon">🛡️</div>
+        <h3>100% Private</h3>
+        <p>Your photos never leave your device. All computations happen in-memory via HTML5 Canvas API.</p>
+      </div>
+      <div class="feature-card glass-panel">
+        <div class="feature-icon">⚡</div>
+        <h3>Ultra Responsive</h3>
+        <p>Instantaneous multi-threaded browser encoding. Convert individual files or batch queues effortlessly.</p>
+      </div>
+      <div class="feature-card glass-panel">
+        <div class="feature-icon">🎛️</div>
+        <h3>Adaptive Precision</h3>
+        <p>Fine-tune compression ratio for WEBP and JPG while keeping transparent backgrounds clean in PNG.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>PixelMorph — Client-side Image Converter • Built with HTML5 Canvas, CSS Glassmorphism & JavaScript</p>
+    </div>
+  </footer>
+
+  <!-- JSZip for ZIP download of batch conversions -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
